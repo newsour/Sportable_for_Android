@@ -1,63 +1,104 @@
 package com.example.tatsuro.sportable
 
+import android.app.PendingIntent.getActivity
+import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.customtabs.CustomTabsIntent
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v7.widget.RecyclerView
-
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 
 class ShopsFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        MyAsyncTask().execute()
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.shops_fragment, container, false)
+        return view
+    }
+
+    inner class MyAsyncTask: AsyncTask<Void, Void, String>() {
+        override fun doInBackground(vararg p0: Void?): String {
+            return this.getHtml()
+        }
+        override fun onPostExecute(result: String) {
+            super.onPostExecute(result)
+            val recyclerView = view?.findViewById(R.id.contentsListView) as RecyclerView
+            val list = createDataList(result)
+
+            val adapter = ContentsListViewAdapter(list, object : ContentsListViewAdapter.ListListener {
+                override fun onClickRow(tappedView: View, ContentsListData: ContentsListData) {
+                    this@ShopsFragment.onClickRow(ContentsListData)
+                }
+            })
+
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(activity)
+            recyclerView.adapter = adapter
+
+        }
+
+        fun getHtml(): String {
+            val client = OkHttpClient()
+            val req = Request.Builder().url("https://api.myjson.com/bins/10laeg").get().build()
+            val resp = client.newCall(req).execute()
+
+            return resp.body()!!.string()
+        }
+    }
+
+    private fun createDataList(result:String): List<ContentsListData>? {
+
+        val jsonText = result
+        val contentsListDataType = Types.newParameterizedType(
+                List::class.java,
+                ContentsListData::class.java
+        )
+        val contentsListDataAdapter: JsonAdapter<List<ContentsListData>> = Moshi.Builder()
+                .build()
+                .adapter(contentsListDataType)
+
+        val contentsList: List<ContentsListData>? = contentsListDataAdapter.fromJson(jsonText)
+
+        val dataList = mutableListOf<ContentsListData>()
+
+        contentsList?.forEach { content ->
+            val data: ContentsListData = ContentsListData().also {
+                    it.name = content.name
+                    it.link = content.link
+                    it.business_hours = content.business_hours
+                println(content.business_hours)
+                    it.address = content.address
+                    it.address_memo = content.address_memo
+               }
+                dataList.add(data)
+            }
+        return dataList
+    }
+
+    fun onClickRow(rowModel: ContentsListData) {
+        val intent = CustomTabsIntent.Builder().build()
+        intent.launchUrl(getActivity(), Uri.parse(rowModel.link))
+    }
 
     companion object {
 
         fun newInstance(): ShopsFragment {
             val fragment = ShopsFragment()
-            val args = Bundle()
             return fragment
         }
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.shops_fragment, container, false)
-
-        super.onViewCreated(view, savedInstanceState)
-
-        val recyclerView = view.findViewById(R.id.contentsListView) as RecyclerView
-        val adapter = ContentsListViewAdapter(createDataList(), object : ContentsListViewAdapter.ListListener {
-            override fun onClickRow(tappedView: View, ContentsListData: ContentsListData) {
-                this@ShopsFragment.onClickRow(tappedView, ContentsListData)
-            }
-        })
-
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter
-
-        return view
-    }
-
-
-    private fun createDataList(): List<ContentsListData> {
-
-        val dataList = mutableListOf<ContentsListData>()
-        for (i in 0..49) {
-            val data: ContentsListData = ContentsListData().also {
-                it.contentName = "タイトル" + i + "だよ"
-                it.contentAddress = "詳細" + i + "個目だよ"
-            }
-            dataList.add(data)
-        }
-        return dataList
-    }
-    fun onClickRow(tappedView: View, rowModel: ContentsListData) {
-        Snackbar.make(tappedView, "Replace with your own action tapped ${rowModel.contentName}", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-    }
 }
+
