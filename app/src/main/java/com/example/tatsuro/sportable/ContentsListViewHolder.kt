@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.TextView
 
 class ContentsListViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-    val titleView: TextView = itemView.findViewById(R.id.contentName)
-    val detailView: TextView = itemView.findViewById(R.id.contentAddress)
+    val name: TextView = itemView.findViewById(R.id.contentName)
+    val business_hours: TextView = itemView.findViewById(R.id.businessHours)
+    val address: TextView = itemView.findViewById(R.id.contentAddress)
+    val addressMemo: TextView = itemView.findViewById(R.id.addressMemo)
 }

@@ -9,8 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.support.v7.widget.RecyclerView
 
-
-
 class FacilitiesFragment : Fragment() {
 
     companion object {
@@ -49,8 +47,8 @@ class FacilitiesFragment : Fragment() {
         val dataList = mutableListOf<ContentsListData>()
         for (i in 0..49) {
             val data: ContentsListData = ContentsListData().also {
-                it.contentName = "タイトル" + i + "だよ"
-                it.contentAddress = "詳細" + i + "個目だよ"
+                it.name = "タイトル" + i + "だよ"
+                it.address = "詳細" + i + "個目だよ"
             }
             dataList.add(data)
         }
@@ -58,7 +56,7 @@ class FacilitiesFragment : Fragment() {
     }
 
     fun onClickRow(tappedView: View, rowModel: ContentsListData) {
-        Snackbar.make(tappedView, "Replace with your own action tapped ${rowModel.contentName}", Snackbar.LENGTH_LONG)
+        Snackbar.make(tappedView, "Replace with your own action tapped ${rowModel.name}", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
     }
 

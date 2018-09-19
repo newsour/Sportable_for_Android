@@ -19,24 +19,17 @@ import com.squareup.picasso.Picasso
 
 
 class NewsFragment : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val args = arguments
         MyAsyncTask().execute()
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.news_fragment, container, false)
         return view
     }
-    companion object {
-        fun newInstance(): NewsFragment {
-            val fragment = NewsFragment()
-            return fragment
-        }
-    }
 
     inner class MyAsyncTask: AsyncTask<Void, Void, String>() {
-
         override fun doInBackground(vararg p0: Void?): String {
             return this.getHtml()
         }
@@ -59,7 +52,6 @@ class NewsFragment : Fragment() {
             val client = OkHttpClient()
             val req = Request.Builder().url("https://api.myjson.com/bins/13fw2o").get().build()
             val resp = client.newCall(req).execute()
-
 
             return resp.body()!!.string()
         }
@@ -84,7 +76,6 @@ class NewsFragment : Fragment() {
                  it.rssUrl = rss.rssUrl
                  //Picasso.with(imageView.context).load(rss.rssUrl).into(rssImage)
                  //Picasso.with(context).load(rss.rssUrl).fit().centerCrop().into(rssImage)
-
              }
          }
          return dataList
@@ -92,6 +83,12 @@ class NewsFragment : Fragment() {
     fun onClickRow(rowModel: RssListData) {
         val intent = CustomTabsIntent.Builder().build()
                     intent.launchUrl(getActivity(), Uri.parse(rowModel.rssUrl))
+    }
+    companion object {
+        fun newInstance(): NewsFragment {
+            val fragment = NewsFragment()
+            return fragment
+        }
     }
 }
 
