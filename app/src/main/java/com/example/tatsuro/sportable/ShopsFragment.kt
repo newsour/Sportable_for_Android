@@ -22,10 +22,11 @@ class ShopsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MyAsyncTask().execute()
+
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.shops_fragment, container, false)
+        MyAsyncTask().execute()
         return view
     }
 
@@ -90,7 +91,7 @@ class ShopsFragment : Fragment() {
 
     fun onClickRow(rowModel: ContentsListData) {
         val intent = CustomTabsIntent.Builder().build()
-        intent.launchUrl(getActivity(), Uri.parse(rowModel.link))
+        intent.launchUrl(activity, Uri.parse(rowModel.link))
     }
 
     companion object {
