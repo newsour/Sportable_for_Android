@@ -53,7 +53,7 @@ class ShopsFragment : Fragment() {
 
         fun getHtml(): String {
             val client = OkHttpClient()
-            val req = Request.Builder().url("https://api.myjson.com/bins/10laeg").get().build()
+            val req = Request.Builder().url("https://api.myjson.com/bins/17m4bw").get().build()
             val resp = client.newCall(req).execute()
 
             return resp.body()!!.string()
@@ -79,13 +79,13 @@ class ShopsFragment : Fragment() {
             val data: ContentsListData = ContentsListData().also {
                     it.name = content.name
                     it.link = content.link
-                    it.business_hours = content.business_hours
-                println(content.business_hours)
+
                     it.address = content.address
-                    it.address_memo = content.address_memo
-               }
-                dataList.add(data)
+                    it.tel = content.tel
+                    it.business_hours = content.business_hours
             }
+                dataList.add(data)
+        }
         return dataList
     }
 

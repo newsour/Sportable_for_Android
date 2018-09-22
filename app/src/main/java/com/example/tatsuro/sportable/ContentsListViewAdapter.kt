@@ -15,10 +15,9 @@ class ContentsListViewAdapter (private val list: List<ContentsListData>?, privat
     override fun onBindViewHolder(holder: ContentsListViewHolder, position: Int) {
         holder.name.text = list?.get(position)!!.name
         holder.address.text = list?.get(position)!!.link
-//        holder.addressMemo.text = list[position].shop_tel
-        holder.business_hours.text = list?.get(position)!!.business_hours.replace("地震の影響により休業いたしておりましたが、営業再開いたしました。","")
+        holder.tel.text = list[position].tel
+        holder.business_hours.text = list?.get(position)!!.business_hours
         holder.address.text = list?.get(position)!!.address
-   //     holder.addressMemo.text = list?.get(position)!!.address_memo
 
         holder.itemView.setOnClickListener {
             listener.onClickRow(it, list?.get(position)!!)

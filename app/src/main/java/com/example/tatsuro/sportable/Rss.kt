@@ -1,9 +1,32 @@
 package com.example.tatsuro.sportable
 
-import com.squareup.moshi.Json
+import android.net.Uri
+import com.squareup.moshi.*
+import java.io.IOException
+import java.lang.reflect.Type
+import java.net.URI
+import java.util.*
+
+data class Items(
+        var items: List<Rss> = listOf<Rss>()
+)
+
+data class RssData(
+        var title: String  = "",
+        var author: String  = "",
+        var link: String  = "",
+        var pubDate :String  = "",
+        var image :String  = ""
+)
 
 data class Rss(
-        @field:Json(name = "title")  var rssTitle: String,
-        @field:Json(name = "author") var rssContributor: String,
-        @field:Json(name = "link")   var rssUrl: String
+        var title: String  = "",
+        var author: String  = "",
+        var link: String  = "",
+        val pubDate :String  = "",
+        val enclosure :Enclosure
+)
+
+data class Enclosure(
+         @field:Json(name = "link") var image: String  = ""
 )

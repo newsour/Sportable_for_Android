@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val pageAdapter = PageAdapter(supportFragmentManager)
             pageAdapter.add(ShopsFragment.newInstance(), "店舗検索")
             pageAdapter.add(FacilitiesFragment.newInstance(), "施設検索")
-            pageAdapter.add(CommunitiesFragment.newInstance(), "コミュニティ")
+            //pageAdapter.add(CommunitiesFragment.newInstance(), "コミュニティ")
             pageAdapter.add(NewsFragment.newInstance(), "ニュース")
 
         view_pager.adapter = pageAdapter

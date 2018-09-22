@@ -53,7 +53,7 @@ class FacilitiesFragment : Fragment() {
 
         fun getHtml(): String {
             val client = OkHttpClient()
-            val req = Request.Builder().url("https://api.myjson.com/bins/10laeg").get().build()
+            val req = Request.Builder().url("https://api.myjson.com/bins/13x0nw").get().build()
             val resp = client.newCall(req).execute()
 
             return resp.body()!!.string()
@@ -80,8 +80,8 @@ class FacilitiesFragment : Fragment() {
                 it.name = content.name
                 it.link = content.link
                 it.business_hours = content.business_hours
-                println(content.business_hours)
                 it.address = content.address
+                it.tel = content.tel
                 it.address_memo = content.address_memo
             }
             dataList.add(data)
@@ -96,8 +96,8 @@ class FacilitiesFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(): ShopsFragment {
-            val fragment = ShopsFragment()
+        fun newInstance(): FacilitiesFragment {
+            val fragment = FacilitiesFragment()
             return fragment
         }
     }
