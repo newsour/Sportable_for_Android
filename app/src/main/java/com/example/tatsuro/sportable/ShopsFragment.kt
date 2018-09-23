@@ -48,7 +48,6 @@ class ShopsFragment : Fragment() {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = adapter
-
         }
 
         fun getHtml(): String {
@@ -79,13 +78,13 @@ class ShopsFragment : Fragment() {
             val data: ContentsListData = ContentsListData().also {
                     it.name = content.name
                     it.link = content.link
-
                     it.address = content.address
                     it.tel = content.tel
                     it.business_hours = content.business_hours
-            }
+                    //it.address_memo = content.address_memo
+               }
                 dataList.add(data)
-        }
+            }
         return dataList
     }
 
@@ -102,4 +101,3 @@ class ShopsFragment : Fragment() {
         }
     }
 }
-

@@ -82,7 +82,7 @@ class FacilitiesFragment : Fragment() {
                 it.business_hours = content.business_hours
                 it.address = content.address
                 it.tel = content.tel
-                it.address_memo = content.address_memo
+                //it.address_memo = content.address_memo
             }
             dataList.add(data)
         }

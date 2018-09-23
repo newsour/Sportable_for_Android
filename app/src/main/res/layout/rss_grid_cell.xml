@@ -16,14 +16,33 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:textColor="#1f1d1d"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/pubDate"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"/>
+
         <ImageView
             android:id="@+id/rssImage"
             android:layout_below="@+id/rssGridCell"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:layout_margin="8dp"
+            android:layout_margin="5dp"
             android:layout_gravity="center_horizontal"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/noimage"/>
 
         <LinearLayout
             android:id="@+id/rssContents"
@@ -32,25 +51,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/pubDate"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"/>
-
-            <TextView
                 android:id="@+id/author"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="1dp"
+               android:layout_marginRight="4dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/pubDate"/>
+                android:gravity="right"/>
         </LinearLayout>
 
     </LinearLayout>

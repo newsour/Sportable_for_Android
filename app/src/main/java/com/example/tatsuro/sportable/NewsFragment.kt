@@ -12,19 +12,11 @@ import android.os.AsyncTask
 import android.support.customtabs.CustomTabsIntent
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.list_item.*
 import java.net.URI
-import java.util.*
 
 
 class NewsFragment : Fragment() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +70,6 @@ class NewsFragment : Fragment() {
          val contentsList: Items? = adapter.fromJson(jsonText)
          val dataList = mutableListOf<RssData>()
 
-         println(contentsList!!.items)
          contentsList!!.items.forEach { content ->
              val data: RssData = RssData().also {
                  it.title = content.title
@@ -89,7 +80,6 @@ class NewsFragment : Fragment() {
              }
              dataList.add(data)
          }
-         println(dataList)
          return dataList
      }
     fun onClickRow(rowModel: RssData) {

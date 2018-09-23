@@ -1,11 +1,6 @@
 package com.example.tatsuro.sportable
 
-import android.net.Uri
 import com.squareup.moshi.*
-import java.io.IOException
-import java.lang.reflect.Type
-import java.net.URI
-import java.util.*
 
 data class Items(
         var items: List<Rss> = listOf<Rss>()
