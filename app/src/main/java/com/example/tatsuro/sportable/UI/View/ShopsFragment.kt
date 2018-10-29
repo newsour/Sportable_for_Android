@@ -1,6 +1,5 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.View
 
-import android.app.PendingIntent.getActivity
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -11,6 +10,9 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.support.v7.widget.RecyclerView
+import com.example.tatsuro.sportable.Data.Entity.ContentsListData
+import com.example.tatsuro.sportable.UI.Presenter.ContentsListViewAdapter
+import com.example.tatsuro.sportable.R
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

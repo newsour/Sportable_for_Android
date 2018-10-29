@@ -1,4 +1,4 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.Data.Entity
 
 import com.squareup.moshi.*
 
@@ -19,7 +19,7 @@ data class Rss(
         var author: String  = "",
         var link: String  = "",
         val pubDate :String  = "",
-        val enclosure :Enclosure
+        val enclosure : Enclosure
 )
 
 data class Enclosure(

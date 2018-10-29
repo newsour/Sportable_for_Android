@@ -1,9 +1,10 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.Presenter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.tatsuro.sportable.R
 
 class RssListViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
     val titleView: TextView = itemView.findViewById(R.id.title)

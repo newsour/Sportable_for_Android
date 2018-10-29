@@ -1,10 +1,11 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.View
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
+import com.example.tatsuro.sportable.R
 
 class CommunitiesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

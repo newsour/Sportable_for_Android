@@ -1,8 +1,9 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.Presenter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import com.example.tatsuro.sportable.R
 
 class ContentsListViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
     val name: TextView = itemView.findViewById(R.id.name)

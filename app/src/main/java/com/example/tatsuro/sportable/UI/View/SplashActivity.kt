@@ -1,9 +1,10 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.View
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
+import com.example.tatsuro.sportable.R
 
 class SplashActivity : AppCompatActivity() {
 

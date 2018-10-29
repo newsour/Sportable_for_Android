@@ -1,4 +1,4 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.Data.Entity
 
 import com.squareup.moshi.Json
 

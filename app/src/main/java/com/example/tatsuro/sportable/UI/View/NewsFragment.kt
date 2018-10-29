@@ -1,4 +1,4 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.View
 
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +12,10 @@ import android.os.AsyncTask
 import android.support.customtabs.CustomTabsIntent
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.example.tatsuro.sportable.Data.Entity.Items
+import com.example.tatsuro.sportable.R
+import com.example.tatsuro.sportable.Data.Entity.RssData
+import com.example.tatsuro.sportable.UI.Presenter.RssListViewAdapter
 import com.squareup.moshi.Moshi
 import java.net.URI
 
@@ -57,6 +61,8 @@ class NewsFragment : Fragment() {
             var encoded_rss_url = URI(NIKKAN_RSS)
             var uri = URI("$RSS2JSON_API_HOST?rss_url=$encoded_rss_url&api_key=$RSS2JSON_API_KEY&count=$max_links")
 
+            println("$uri")
+
             val client = OkHttpClient()
             val req = Request.Builder().url("$uri").get().build()
             val resp = client.newCall(req).execute()
@@ -76,7 +82,10 @@ class NewsFragment : Fragment() {
                  it.author = content.author
                  it.link = content.link
                  it.pubDate = content.pubDate
-                 it.image = content.enclosure.image
+
+                 if(content.enclosure.image != "") {
+                     it.image = content.enclosure.image
+                 }
              }
              dataList.add(data)
          }

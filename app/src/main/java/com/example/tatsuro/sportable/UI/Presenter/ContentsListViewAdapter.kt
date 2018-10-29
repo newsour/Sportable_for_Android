@@ -1,9 +1,11 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.Presenter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.tatsuro.sportable.Data.Entity.ContentsListData
+import com.example.tatsuro.sportable.R
 
 class ContentsListViewAdapter (private val list: List<ContentsListData>?, private val listener: ListListener) : RecyclerView.Adapter<ContentsListViewHolder>() {
 

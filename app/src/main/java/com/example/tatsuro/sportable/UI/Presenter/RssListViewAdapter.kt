@@ -1,15 +1,15 @@
-package com.example.tatsuro.sportable
+package com.example.tatsuro.sportable.UI.Presenter
 
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateFormat
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.tatsuro.sportable.R
+import com.example.tatsuro.sportable.Data.Entity.RssData
 import com.squareup.picasso.Picasso
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.regex.Pattern
 
 class RssListViewAdapter (private val list: List<RssData>?, private val listener: ListListener) : RecyclerView.Adapter<RssListViewHolder>() {
 
@@ -29,8 +29,13 @@ class RssListViewAdapter (private val list: List<RssData>?, private val listener
         val date = df2.format(dt)
 
         holder.pubDate.text = date
-        Picasso.get().load(list?.get(position)!!.image).into(holder.image)
 
+        val pattern = Pattern.compile("(http)")
+        val matcher = pattern.matcher(list?.get(position)!!.image)
+
+        if(matcher.find()) {
+            Picasso.get().load(list?.get(position)!!.image).into(holder.image)
+        }
         holder.itemView.setOnClickListener {
             listener.onClickRow(it, list?.get(position)!!)
         }
